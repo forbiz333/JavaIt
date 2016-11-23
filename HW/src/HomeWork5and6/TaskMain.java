@@ -17,7 +17,7 @@ import java.util.*;
 public class TaskMain {
 
 	public static void main(String[] args) {
-		
+
 		List<Phone> phoneList = new ArrayList<Phone>();
 
 		phoneList.add(new Phone(1561, "Alex", "Alexovich", "Alexov", "Arol", 156111111110l, 156.1, 15.1, 100, 10));
@@ -28,14 +28,15 @@ public class TaskMain {
 		phoneList.add(new Phone(1234, "Miha", "Mishavich", "Mishov", "Moskow", 123411111110l, 123.4, 12.4, 150, 15));
 
 		Iterator<Phone> iter = phoneList.iterator();
-		int counter = 0; // using the counter just to know the length of using phoneList
+		int counter = 0; // using the counter just to know the length of using
+							// phoneList
 		while (iter.hasNext()) {
 			iter.next();
 			counter++;
 		}
 
 		// System.out.println(counter); // for printing the counter
-		
+
 		Scanner input = new Scanner(System.in);
 
 		for (;;) {// infinite cycle for non-stop using program
@@ -96,7 +97,7 @@ public class TaskMain {
 			}
 
 		}
-		
+
 	}
 
 }
