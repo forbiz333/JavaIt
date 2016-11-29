@@ -1,21 +1,20 @@
 package motoEquipment;
 
-public abstract class Equipment {
+import java.io.Serializable;
+
+public abstract class Equipment implements Serializable {
 
 	private String name;
-	private int weight;
+	private Integer weight;
 	private int price;
 	private String material;
 	private String color;
-	
-	
-	
-	/** setters and getters for all fields */
-	public int getWeight() {
+
+	public Integer getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
@@ -42,7 +41,7 @@ public abstract class Equipment {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -51,7 +50,7 @@ public abstract class Equipment {
 		this.name = name;
 	}
 
-	public Equipment(String name, int weight, int price, String material, String color) {
+	public Equipment(String name, Integer weight, int price, String material, String color) {
 		this.name = name;
 		this.weight = weight;
 		this.price = price;
@@ -59,10 +58,15 @@ public abstract class Equipment {
 		this.color = color;
 	}
 
+	@Override
+	public String toString() {
+		return "\n" + name + " | " + weight + " gramm" + " | " + price + " USD" + " | " + material + " | " + color;
+	}
+
 	public void dress() {
 	}
 
-	public void takeOff(){
-		
+	public void takeOff() {
+
 	}
 }

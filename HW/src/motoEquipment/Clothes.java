@@ -4,7 +4,6 @@ public class Clothes extends Equipment {
 
 	private String size;
 
-	/** setter and getter for variable size*/
 	public String getSize() {
 		return size;
 	}
@@ -13,7 +12,7 @@ public class Clothes extends Equipment {
 		this.size = size;
 	}
 
-	public Clothes(String name, int weight, int price, String material, String color, String size) {
+	public Clothes(String name, Integer weight, int price, String material, String color, String size) {
 		super(name, weight, price, material, color);
 		this.size = size;
 	}

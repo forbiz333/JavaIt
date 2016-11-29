@@ -1,6 +1,6 @@
 package motoEquipment;
 
-public class Protection extends Clothes{
+public class Protection extends Clothes {
 
 	private int protectionClass;
 
@@ -13,11 +13,15 @@ public class Protection extends Clothes{
 		this.protectionClass = protectionClass;
 	}
 
-	public Protection(String name, int weight, int price, String material, String color, String size,
+	public Protection(String name, Integer weight, int price, String material, String color, String size,
 			int protectionClass) {
 		super(name, weight, price, material, color, size);
 		this.protectionClass = protectionClass;
 	}
 
-		
+	@Override
+	public String toString() {
+		return super.toString() + " | " + "protectionClass: " + protectionClass;
+	}
+
 }

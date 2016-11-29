@@ -1,11 +1,10 @@
 package motoEquipment;
 
-public class ForManAcc extends Accessories{
+public class ForManAcc extends Accessories {
 
 	private int indexOfCoolness;
 
-	
-	/** setter and getter fo indexOfCoolness*/
+	/** setter and getter fo indexOfCoolness */
 	public int getIndexOfCoolness() {
 		return indexOfCoolness;
 	}
@@ -14,12 +13,14 @@ public class ForManAcc extends Accessories{
 		this.indexOfCoolness = indexOfCoolness;
 	}
 
-	public ForManAcc(String name, int weight, int price, String material, String color, int indexOfCoolness) {
+	public ForManAcc(String name, Integer weight, int price, String material, String color, int indexOfCoolness) {
 		super(name, weight, price, material, color);
 		this.indexOfCoolness = indexOfCoolness;
 	}
 
-
-
+	@Override
+	public String toString() {
+		return super.toString() + " | " + "IndexOfCoolness: " + getIndexOfCoolness();
+	}
 
 }
