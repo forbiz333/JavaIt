@@ -21,7 +21,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.util.Scanner;
+
 import java.util.*;
 
 public class MainMoto {
@@ -29,7 +30,7 @@ public class MainMoto {
 	public static void main(String[] args) {
 
 		List<Equipment> equipList = new ArrayList<Equipment>();
-		List<Equipment> equipListSort = new ArrayList<Equipment>();
+		List<Equipment> equipListSort = new ArrayList<Equipment>();//create here for use in future in p.4 of menu
 
 		equipList.add(new Clothes("jacket", 1500, 100, "leather", "black", "xxl"));
 		equipList.add(new Clothes("trousers", 1000, 60, "leather", "black", "xxl"));
@@ -59,94 +60,97 @@ public class MainMoto {
 				System.out.println("\n1. Экипировать мотоциклиста.\n" + "2. Подсчитать стоимость.\n"
 						+ "3. Провести сортировку амуниции на основе веса.\n"
 						+ "4. Найти элементы амуниции, соответствующие заданному диапазону параметров цены.\n"
-						+ "5. Сериализацияю\n" + "6. Десериализация\n" + "7. Выход");
+						+ "5. Сериализация\n" + "6. Десериализация\n" + "7. Выход");
 
-				int value = input.nextInt();
+				try {
+					int value = input.nextInt();
 
-				switch (value) {
-				case 1:
-					System.out.println(equipList);
+					switch (value) {
+					case 1:
+						System.out.println(equipList);//all catalog 
 
-					break;
+						break;
 
-				case 2:
-					int sum = 0;
-					for (int i = 0; i < counter; i++) {
-						sum += equipList.get(i).getPrice();
-					}
-					System.out.println(sum + " USD;");
-					break;
-
-				case 3:
-					Comparator<Equipment> comp = new Comparator<Equipment>() {
-						public int compare(Equipment one, Equipment two) {
-							return one.getWeight().compareTo(two.getWeight());
+					case 2:
+						int sum = 0;
+						for (int i = 0; i < counter; i++) { // calculating all catalog
+							sum += equipList.get(i).getPrice();
 						}
-					};
-					Collections.sort(equipList, comp);
-					for (int i = 0; i < counter; i++) {
+						System.out.println(sum + " USD;"); 
+						break;
 
-						System.out.print(equipList.get(i));
-					}
-					break;
+					case 3:
+						Comparator<Equipment> comp = new Comparator<Equipment>() {// sorting by weight
+							public int compare(Equipment one, Equipment two) {
+								return one.getWeight().compareTo(two.getWeight());
+							}
+						};
+						Collections.sort(equipList, comp);
+						for (int i = 0; i < counter; i++) {
 
-				case 4:
-					System.out.println(
-							"Введите диапазон цены: цифру-начало диапазона  - ввод, затем цифру-конец диапазона - ввод ");
-					int floorPrice = input.nextInt();
-					int ceilPrice = input.nextInt();
-
-					for (int i = 0; i < counter; i++) {
-						if ((equipList.get(i).getPrice()) >= floorPrice && (equipList.get(i).getPrice()) <= ceilPrice) {
 							System.out.print(equipList.get(i));
-							equipListSort.add(equipList.get(i));
 						}
+						break;
+
+					case 4:
+						System.out.println(
+								"Введите диапазон цены: цифру-начало диапазона  - ввод, затем цифру-конец диапазона - ввод ");
+						int floorPrice = input.nextInt();
+						int ceilPrice = input.nextInt();
+
+						for (int i = 0; i < counter; i++) {//filter by price (ceil and floor)
+							if ((equipList.get(i).getPrice()) >= floorPrice
+									&& (equipList.get(i).getPrice()) <= ceilPrice) {
+								System.out.print(equipList.get(i));
+								equipListSort.add(equipList.get(i));// for serialization by one object
+							}
+						}
+
+						break;
+					case 5:
+					//	System.out.print("\n" + equipListSort); // just to see what we are serializing
+						FileOutputStream fos = null;
+						ObjectOutputStream out = null;
+						try {
+							fos = new FileOutputStream("moto.tmp");
+							out = new ObjectOutputStream(fos);
+							out.writeObject(equipListSort);
+							out.close();
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
+
+						break;
+
+					case 6:
+						FileInputStream fis = null;
+						ObjectInputStream oin = null;
+						try {
+							fis = new FileInputStream("moto.tmp");
+							oin = new ObjectInputStream(fis);
+							@SuppressWarnings("unchecked")
+							List<Equipment> obj = (List<Equipment>) oin.readObject();
+							System.out.println(obj);
+							oin.close();
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						} catch (ClassNotFoundException ex) {
+							ex.printStackTrace();
+						}
+
+						break;
+
+					case 7:
+
+						return;
+
+					default:
+						System.out.println("Вы ввели неверное число");
+
 					}
-					// System.out.print("\n" + equipListSort);
-					break;
-				case 5:
-					System.out.print("\n" + equipListSort);
-					FileOutputStream fos = null;
-					ObjectOutputStream out = null;
-					try {
-						fos = new FileOutputStream("moto.tmp");
-						out = new ObjectOutputStream(fos);
-						// MainMoto object = new MainMoto();
-						out.writeObject(equipListSort);
-						// out.flush();
-						out.close();
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-
-					//System.out.println(equipList);
-
-					break;
-
-				case 6:
-					FileInputStream fis = null;
-					ObjectInputStream oin = null;
-					try {
-						fis = new FileInputStream("moto.tmp");
-						oin = new ObjectInputStream(fis);
-						Equipment object = (Equipment) oin.readObject();
-						System.out.println(object);
-						oin.close();
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					} catch (ClassNotFoundException ex) {
-						ex.printStackTrace();
-					}
-
-					break;
-
-				case 7:
-
-					return;
-
-				default:
-					System.out.println("Вы ввели неверное число");
-
+				} catch (InputMismatchException e) {
+					System.out.println("only numbers are allowed");
+					input.nextLine();
 				}
 			}
 		}

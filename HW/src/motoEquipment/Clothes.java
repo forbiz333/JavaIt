@@ -1,7 +1,15 @@
 package motoEquipment;
 
+/**
+ * class for catalog of moto-equipment (it's child: Protection)
+ */
+
 public class Clothes extends Equipment {
 
+	/*
+	 * id for serializing
+	 */
+	private static final long serialVersionUID = 1L;
 	private String size;
 
 	public String getSize() {
@@ -17,5 +25,4 @@ public class Clothes extends Equipment {
 		this.size = size;
 	}
 
-	
 }

@@ -2,8 +2,14 @@ package motoEquipment;
 
 import java.io.Serializable;
 
+/** the highest class for catalog of moto-equipment */
+
 public abstract class Equipment implements Serializable {
 
+	/*
+	 * id for serializing
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Integer weight;
 	private int price;

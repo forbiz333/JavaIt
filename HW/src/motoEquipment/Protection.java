@@ -1,7 +1,15 @@
 package motoEquipment;
 
+/**
+ * the lower class of catalog of moto-equipment
+ */
+
 public class Protection extends Clothes {
 
+	/*
+	 * id for serializing
+	 */
+	private static final long serialVersionUID = 1L;
 	private int protectionClass;
 
 	/** setter and getter for protectionClass */

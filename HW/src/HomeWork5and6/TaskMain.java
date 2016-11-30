@@ -27,21 +27,13 @@ public class TaskMain {
 		phoneList.add(new Phone(9636, "Foma", "Fomavich", "Fomov", "Frankfurt", 963611111110l, 963.6, 96.6, 140, 14));
 		phoneList.add(new Phone(1234, "Miha", "Mishavich", "Mishov", "Moskow", 123411111110l, 123.4, 12.4, 150, 15));
 
-		Iterator<Phone> iter = phoneList.iterator();
-		int counter = 0; // using the counter just to know the length of using
-							// phoneList
-		while (iter.hasNext()) {
-			iter.next();
-			counter++;
-		}
-
-		// System.out.println(counter); // for printing the counter
-
-		Scanner input = new Scanner(System.in);
+		int counter = phoneList.size();
+		
+		try (Scanner input = new Scanner(System.in)){//try-with-resources
 
 		for (;;) {// infinite cycle for non-stop using program
 
-			/** menu */
+			/* menu */
 			System.out.println("Введите число от 1 до 4 включительно:\n"
 					+ "1. сведения об абонентах, у которых время внутригородских разговоров превышает заданное Вами;\n"
 					+ "2. сведения об абонентах, которые пользовались междугородной связью;\n"
@@ -49,7 +41,7 @@ public class TaskMain {
 
 			int value = input.nextInt();
 
-			/**
+			/*
 			 * 1. Task a. ----- 2. Task b ------ 3. Task c ------ 4. Quit
 			 */
 
@@ -95,9 +87,9 @@ public class TaskMain {
 			default:
 				System.out.println("Вы ввели неверное число");
 			}
-
 		}
-
+		}
+		
 	}
-
+	
 }

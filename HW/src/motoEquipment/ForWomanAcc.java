@@ -1,7 +1,15 @@
 package motoEquipment;
 
+/**
+ * the lower class of catalog of moto-equipment
+ */
+
 public class ForWomanAcc extends Accessories {
 
+	/*
+	 * id for serializing
+	 */
+	private static final long serialVersionUID = 1L;
 	private int indexOfBeauty;
 
 	/** setter and getter fo indexOfBeauty */

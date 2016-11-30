@@ -16,7 +16,6 @@ public class Phone {
 	private int timeCityCall;
 	private int timeCityOutCall;
 
-	/** constructor with all fields */
 	public Phone(int id, String name, String secondName, String sername, String adress, long idCard, double debet,
 			double kredit, int timeCityCall, int timeCityOutCall) {
 		this.id = id;
@@ -31,7 +30,6 @@ public class Phone {
 		this.timeCityOutCall = timeCityOutCall;
 	}
 
-	/** setters and getters for all fields */
 	public int getId() {
 		return id;
 	}
@@ -112,10 +110,10 @@ public class Phone {
 		this.timeCityOutCall = timeCityOutCall;
 	}
 
-	@Override // overriding toString, showing all fields of Phone's objects
+	@Override
 	public String toString() {
-		return (getId() + "   " + getName() + "  " + getSecondName() + "  " + getSername() + "   " + getAdress() + "   "
-				+ getIdCard() + "         " + getDebet() + "     " + getKredit() + "          " + getTimeCityCall()
-				+ "          " + getTimeCityOutCall());
+		return (getId() + " | " + getName() + " | " + getSecondName() + " | " + getSername() + " | " + getAdress() + " | "
+				+ getIdCard() + " | " + getDebet() + " | " + getKredit() + " | " + getTimeCityCall()
+				+ " | " + getTimeCityOutCall());
 	}
 }
