@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<greenhouse>
+	<plants>
+		<name>coca</name>
+		<soil>podsolic</soil>
+		<origin>BY</origin>
+		<visualParameters colorOfStalk="green" avSizeSM="25"/>
+		<growingTips tempDg="26" wateringMlW="25"/>
+		<multiplying>semen</multiplying>
+	</plants>
+</greenhouse>

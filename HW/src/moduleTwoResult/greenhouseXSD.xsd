@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="greenhouse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="plants"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+		<xs:complexType name="plants">
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="soil">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="podsolic"/>
+							<xs:enumeration value="ground"/>
+							<xs:enumeration value="sod-podzolic"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="origin" type="xs:string"/>
+				<xs:element name="visualParameters">
+					<xs:complexType>
+						<xs:attribute name="colorOfStalk" type="xs:string"/>
+						<xs:attribute name="avSizeSM" type="xs:integer"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="growingTips">
+					<xs:complexType>
+						<xs:attribute name="tempDg" type="xs:integer"/>
+						<xs:attribute name="wateringMlW" type="xs:integer"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="multiplying">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="semen"/>
+							<xs:enumeration value="cutting"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>		
+		</xs:complexType>
+</xs:schema>	
