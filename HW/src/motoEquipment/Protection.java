@@ -9,7 +9,8 @@ public class Protection extends Clothes {
 	/*
 	 * id for serializing
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8215597030921762430L;
+
 	private int protectionClass;
 
 	/** setter and getter for protectionClass */

@@ -9,7 +9,9 @@ public abstract class Equipment implements Serializable {
 	/*
 	 * id for serializing
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1893209790973020522L;
+	
+	
 	private String name;
 	private Integer weight;
 	private int price;
@@ -69,10 +71,4 @@ public abstract class Equipment implements Serializable {
 		return "\n" + name + " | " + weight + " gramm" + " | " + price + " USD" + " | " + material + " | " + color;
 	}
 
-	public void dress() {
-	}
-
-	public void takeOff() {
-
-	}
 }

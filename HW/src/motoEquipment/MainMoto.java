@@ -30,7 +30,12 @@ public class MainMoto {
 	public static void main(String[] args) {
 
 		List<Equipment> equipList = new ArrayList<Equipment>();
-		List<Equipment> equipListSort = new ArrayList<Equipment>();//create here for use in future in p.4 of menu
+		List<Equipment> equipListSort = new ArrayList<Equipment>();// create
+																	// here for
+																	// use in
+																	// future in
+																	// p.4 of
+																	// menu
 
 		equipList.add(new Clothes("jacket", 1500, 100, "leather", "black", "xxl"));
 		equipList.add(new Clothes("trousers", 1000, 60, "leather", "black", "xxl"));
@@ -67,20 +72,23 @@ public class MainMoto {
 
 					switch (value) {
 					case 1:
-						System.out.println(equipList);//all catalog 
+						System.out.println(equipList);// all catalog
 
 						break;
 
 					case 2:
 						int sum = 0;
-						for (int i = 0; i < counter; i++) { // calculating all catalog
+						for (int i = 0; i < counter; i++) { // calculating all
+															// catalog
 							sum += equipList.get(i).getPrice();
 						}
-						System.out.println(sum + " USD;"); 
+						System.out.println(sum + " USD;");
 						break;
 
 					case 3:
-						Comparator<Equipment> comp = new Comparator<Equipment>() {// sorting by weight
+						Comparator<Equipment> comp = new Comparator<Equipment>() {// sorting
+																					// by
+																					// weight
 							public int compare(Equipment one, Equipment two) {
 								return one.getWeight().compareTo(two.getWeight());
 							}
@@ -93,22 +101,28 @@ public class MainMoto {
 						break;
 
 					case 4:
+						equipListSort.clear();
 						System.out.println(
 								"Введите диапазон цены: цифру-начало диапазона  - ввод, затем цифру-конец диапазона - ввод ");
 						int floorPrice = input.nextInt();
 						int ceilPrice = input.nextInt();
 
-						for (int i = 0; i < counter; i++) {//filter by price (ceil and floor)
+						for (int i = 0; i < counter; i++) {// filter by price
+															// (ceil and floor)
 							if ((equipList.get(i).getPrice()) >= floorPrice
 									&& (equipList.get(i).getPrice()) <= ceilPrice) {
 								System.out.print(equipList.get(i));
-								equipListSort.add(equipList.get(i));// for serialization by one object
+								equipListSort.add(equipList.get(i));// for
+																	// serialization
+																	// by one
+																	// object
 							}
 						}
 
 						break;
 					case 5:
-					//	System.out.print("\n" + equipListSort); // just to see what we are serializing
+						// System.out.print("\n" + equipListSort); // just to
+						// see what we are serializing
 						FileOutputStream fos = null;
 						ObjectOutputStream out = null;
 						try {
@@ -125,11 +139,13 @@ public class MainMoto {
 					case 6:
 						FileInputStream fis = null;
 						ObjectInputStream oin = null;
+						
 						try {
 							fis = new FileInputStream("moto.tmp");
 							oin = new ObjectInputStream(fis);
-							@SuppressWarnings("unchecked")
-							List<Equipment> obj = (List<Equipment>) oin.readObject();
+
+							List<Equipment> obj = (ArrayList<Equipment>) oin.readObject();
+							
 							System.out.println(obj);
 							oin.close();
 						} catch (IOException ex) {

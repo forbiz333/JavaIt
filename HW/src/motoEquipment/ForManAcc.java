@@ -9,7 +9,8 @@ public class ForManAcc extends Accessories {
 	/*
 	 * id for serializing
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -7175632303070066321L;
+
 	private int indexOfCoolness;
 
 	/** setter and getter fo indexOfCoolness */
@@ -31,4 +32,13 @@ public class ForManAcc extends Accessories {
 		return super.toString() + " | " + "IndexOfCoolness: " + getIndexOfCoolness();
 	}
 
+	public void shine() {
+	}
+
+	public void dress() {
+	}
+
+	public void takeOff() {
+
+	}
 }

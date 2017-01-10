@@ -5,11 +5,11 @@ package motoEquipment;
  */
 
 public class Clothes extends Equipment {
-
 	/*
 	 * id for serializing
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -474777494395876790L;
+
 	private String size;
 
 	public String getSize() {
@@ -23,6 +23,13 @@ public class Clothes extends Equipment {
 	public Clothes(String name, Integer weight, int price, String material, String color, String size) {
 		super(name, weight, price, material, color);
 		this.size = size;
+	}
+
+	public void dress() {
+	}
+
+	public void takeOff() {
+
 	}
 
 }

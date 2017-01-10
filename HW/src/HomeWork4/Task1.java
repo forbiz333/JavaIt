@@ -17,7 +17,11 @@ public class Task1 {
 										// подсчета позиций букв
 		char arr[] = s.toCharArray();// массив текста с нижним регистром
 		int num = 0;
-
+		System.out.println("tread is waitin 5 sec");
+		try{Thread.sleep(5000);}
+		catch(InterruptedException e){
+			System.out.println("Exc");
+		}
 		for (int i = 0; i < arr1.length; i++) {// Распечатываем исходный текст с
 												// пробелами
 			System.out.print(arr1[i] + "  ");
