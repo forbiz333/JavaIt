@@ -20,17 +20,16 @@ import tourDAO.mysql.UserDB;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AddTourServlet")
+public class AddTourServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3282193949240670250L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// get request parameters for userID and password
-		String user = request.getParameter("user");
-		String pwd = request.getParameter("pwd");
+				
+	/*	// get request parameters for adding
+		String tour = request.getParameter("order");
 
 		CopyOnWriteArrayList<User> userList = (new UserDB()).findAll();
 
@@ -40,9 +39,7 @@ public class LoginServlet extends HttpServlet {
 				if (userList.get(i).isAdmin() == true) {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
-					session.setAttribute("userListWLP", (new UserDB()).findAllWithousLogPas());
-					session.setAttribute("tourList", (new TourDB()).findAll());
-
+					session.setAttribute("userList", (new UserDB()).findAll());
 
 					// setting session to expiry in 30 mins
 					session.setMaxInactiveInterval(30 * 60);
@@ -51,10 +48,10 @@ public class LoginServlet extends HttpServlet {
 					userName.setMaxAge(30 * 60);
 					response.addCookie(userName);
 
-					RequestDispatcher rd = getServletContext().getRequestDispatcher("/LoginSuccessAdmin.jsp");
-					rd.forward(request, response);
+					response.sendRedirect("LoginSuccessAdmin.jsp");
 					
 				} else {
+					
 					
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
@@ -69,6 +66,7 @@ public class LoginServlet extends HttpServlet {
 
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/LoginSuccessUser.jsp");
 					rd.forward(request, response);
+					//response.sendRedirect("LoginSuccessUser.jsp");
 				}
 			}
 		}
@@ -77,5 +75,10 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<b><font color=red size=5>Either user name or password is wrong.</font><b>");
 		rd.include(request, response);
+		
+		String ordering = request.getParameter("user");
+		
+		*/
+
 	}
 }

@@ -11,6 +11,7 @@
 <title>Tours</title>
 </head>
 <body>
+<form action="AddTourServlet" method="post">
 	<table border="1">
 		<tr>
 			<th>tour_id</th>
@@ -21,16 +22,16 @@
 			<th>make an order</th>
 		</tr>
 		<c:forEach var="tourList" items="${tourList}">
-
 			<tr>
 				<td>${tourList.tour_id}</td>
 				<td>${tourList.cost}</td>
 				<td>${tourList.country}</td>
 				<td>${tourList.fire_tour}</td>
 				<td>${tourList.type_id}</td>
-				<td><input type="submit" value="Order"></td>
+				<td><input type="submit" value="Order" name="order${tourList.tour_id}"></td>
 			</tr>
 		</c:forEach>
 	</table>
+</form>
 </body>
 </html>

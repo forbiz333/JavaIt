@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-
 import experts.Tour;
 import src.DataSource;
 import tourDAO.TourDAO;
@@ -18,29 +17,16 @@ public class TourDB implements TourDAO {
 
 	@Override
 	public void create(Tour GeneralExpert) {
-		
-		Connection myConnection = null;
-		
-		/*String sql = "INSERT INTO tour(tour_id, cost, country, fire_tour, type_id) VALUES (?, ?, ?, ?, ?)";
-		
-		PreparedStatement prStatement = myConnection.prepareStatement(sql);
-		prStatement.setInt(1, GeneralExpert.getTour_id());
-		prStatement.setInt(2, GeneralExpert.getCost());
-		prStatement.setString(3, GeneralExpert.getCountry());
-		prStatement.setBoolean(4, GeneralExpert.isFire_tour());
-		prStatement.setInt(5, GeneralExpert.getType_id());
-		
-		prStatement.executeUpdate();*/
-		
 
-		
+		Connection myConnection = null;
+
 		try { // 1 блок
 			myConnection = DataSource.getInstance().getConnection();
 			PreparedStatement prStatement = null;
 			String sql = "INSERT INTO tour(tour_id, cost, country, fire_tour, type_id) VALUES (?, ?, ?, ?, ?)";
 			try { // 2 блок
 				prStatement = myConnection.prepareStatement(sql);
-				
+
 				prStatement = myConnection.prepareStatement(sql);
 				prStatement.setInt(1, GeneralExpert.getTour_id());
 				prStatement.setInt(2, GeneralExpert.getCost());
@@ -48,7 +34,7 @@ public class TourDB implements TourDAO {
 				prStatement.setBoolean(4, GeneralExpert.isFire_tour());
 				prStatement.setInt(5, GeneralExpert.getType_id());
 				prStatement.executeUpdate();
-					
+
 			} finally {
 				/*
 				 * закрыть Statement, если он был открыт или ошибка произошла во
@@ -80,10 +66,8 @@ public class TourDB implements TourDAO {
 				}
 			}
 		}
-		
-	}
-		
 
+	}
 
 	@Override
 	public CopyOnWriteArrayList<Tour> findAll() {
@@ -170,11 +154,9 @@ public class TourDB implements TourDAO {
 		return null;
 	}
 
-	
-
 	@Override
 	public void delete(int id) {
-		
+
 	}
 
 	@Override

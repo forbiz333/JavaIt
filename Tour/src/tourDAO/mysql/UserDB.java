@@ -98,6 +98,79 @@ public class UserDB implements UserDAO {
 		return userList;
 	}
 
+	
+	
+	
+	@Override
+	public CopyOnWriteArrayList<User> findAllWithousLogPas() {
+		Connection myConnection = null;
+		CopyOnWriteArrayList<User> userListWLP = null;
+
+		try { // 1 блок
+			myConnection = DataSource.getInstance().getConnection();
+			Statement statement = null;
+			try { // 2 блок
+				statement = myConnection.createStatement();
+				ResultSet result = null;
+				try { // 3 блок
+					result = statement.executeQuery("SELECT * FROM user;");
+					userListWLP = new CopyOnWriteArrayList<>();
+
+					while (result.next()) {
+						int id = result.getInt(1);
+						String name = result.getString(5);
+						String surname = result.getString(6);
+						int discount = result.getInt(7);
+
+						userListWLP.add(new User(id, name, surname, discount));
+					}
+
+					
+				} finally { // для 3-го блока try
+					/*
+					 * закрыть ResultSet, если он был открыт или ошибка
+					 * произошла во время чтения из него данных
+					 */
+					if (result != null) { // был ли создан ResultSet
+						result.close();
+					} else {
+						System.err.println("ошибка во время чтения из БД");
+					}
+				}
+			} finally {
+				/*
+				 * закрыть Statement, если он был открыт или ошибка произошла во
+				 * время создания Statement
+				 */
+				if (statement != null) { // для 2-го блока try
+					statement.close();
+				} else {
+					System.err.println("Statement не создан");
+				}
+			}
+		} catch (SQLException | IOException | PropertyVetoException e) { // для
+																			// 1-го
+																			// блока
+																			// try
+			System.err.println("DB connection error: " + e);
+			/*
+			 * вывод сообщения о всех SQLException
+			 */
+		} finally {
+			/*
+			 * закрыть Connection, если он был открыт
+			 */
+			if (myConnection != null) {
+				try {
+					myConnection.close();
+				} catch (SQLException e) {
+					System.err.println("Connection close error: " + e);
+				}
+			}
+		}
+		return userListWLP;
+	}
+
 	@Override
 	public User findById(int id) {
 		return null;

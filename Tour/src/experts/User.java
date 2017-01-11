@@ -29,6 +29,14 @@ public class User extends GeneralExpert implements Serializable {
 		this.surname = surname;
 		this.discount = discount;
 	}
+	
+	public User(int user_id, String name, String surname, int discount) {
+		this.user_id = user_id;
+		this.name = name;
+		this.surname = surname;
+		this.discount = discount;
+	}
+	
 
 	public int getUser_id() {
 		return user_id;

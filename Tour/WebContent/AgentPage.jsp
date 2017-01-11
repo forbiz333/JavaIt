@@ -11,6 +11,24 @@
 <title>Users and Tours</title>
 </head>
 <body>
-	Page is developing.....
+	<form action="OrderServlet" method="post">
+	<table border="1">
+		<tr>
+			<th>user_id</th>
+			<th>name</th>
+			<th>surname</th>
+			<th>discount</th>
+		
+		</tr>
+		<c:forEach var="userListWLP" items="${userListWLP}">
+			<tr>
+				<td>${userListWLP.user_id}</td>
+				<td>${userListWLP.name}</td>
+				<td>${userListWLP.surname}</td>
+				<td>${userListWLP.discount}</td>
+			</tr>
+		</c:forEach>
+	</table>
+</form>
 </body>
 </html>
