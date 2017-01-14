@@ -25,7 +25,6 @@ public class TourDB implements TourDAO {
 			PreparedStatement prStatement = null;
 			String sql = "INSERT INTO tour(tour_id, cost, country, fire_tour, type_id) VALUES (?, ?, ?, ?, ?)";
 			try { // 2 блок
-				prStatement = myConnection.prepareStatement(sql);
 
 				prStatement = myConnection.prepareStatement(sql);
 				prStatement.setInt(1, GeneralExpert.getTour_id());
@@ -146,8 +145,68 @@ public class TourDB implements TourDAO {
 
 	@Override
 	public Tour findById(int id) {
-		return null;
+		Connection myConnection = null;
+		Tour foundTour = null;
+
+		try { // 1 блок
+			myConnection = DataSource.getInstance().getConnection();
+			PreparedStatement prStatement = null;
+			String sql = "SELECT * FROM tour where tour_id=?";
+			try { // 2 блок
+				prStatement = myConnection.prepareStatement(sql);
+				ResultSet result = null;
+				try { // 3 блок
+					prStatement.setInt(1, id);
+					result = prStatement.executeQuery(sql);
+					foundTour = (Tour) result;
+
+				} finally { // для 3-го блока try
+					/*
+					 * закрыть ResultSet, если он был открыт или ошибка
+					 * произошла во время чтения из него данных
+					 */
+					if (result != null) { // был ли создан ResultSet
+						result.close();
+					} else {
+						System.err.println("ошибка во время чтения из БД");
+					}
+				}
+			} finally {
+				/*
+				 * закрыть Statement, если он был открыт или ошибка произошла во
+				 * время создания Statement
+				 */
+				if (prStatement != null) { // для 2-го блока try
+					prStatement.close();
+				} else {
+					System.err.println("Statement не создан");
+				}
+			}
+		} catch (SQLException | IOException | PropertyVetoException e) { // для
+																			// 1-го
+																			// блока
+																			// try
+			System.err.println("DB connection error: " + e);
+			/*
+			 * вывод сообщения о всех SQLException
+			 */
+		} finally {
+			/*
+			 * закрыть Connection, если он был открыт
+			 */
+			if (myConnection != null) {
+				try {
+					myConnection.close();
+				} catch (SQLException e) {
+					System.err.println("Connection close error: " + e);
+				}
+			}
+		}
+		System.out.println(foundTour);
+		return foundTour;
 	}
+
+	
 
 	@Override
 	public Tour update(Tour GeneralExpert) {

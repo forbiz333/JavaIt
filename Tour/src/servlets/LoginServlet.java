@@ -41,7 +41,6 @@ public class LoginServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
 					session.setAttribute("userListWLP", (new UserDB()).findAllWithousLogPas());
-					session.setAttribute("tourList", (new TourDB()).findAll());
 
 
 					// setting session to expiry in 30 mins

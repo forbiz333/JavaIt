@@ -11,6 +11,22 @@
 <title>Tours</title>
 </head>
 <body>
+<%
+		//allow access only if session exists
+		String user = (String) session.getAttribute("user");
+		String userName = null;
+		String sessionID = null;
+		 Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("user"))
+					userName = cookie.getValue();
+				if (cookie.getName().equals("JSESSIONID"))
+					sessionID = cookie.getValue();
+			}
+		} 
+	%>
+
 <form action="AddTourServlet" method="post">
 	<table border="1">
 		<tr>
@@ -28,7 +44,10 @@
 				<td>${tourList.country}</td>
 				<td>${tourList.fire_tour}</td>
 				<td>${tourList.type_id}</td>
-				<td><input type="submit" value="Order" name="order${tourList.tour_id}"></td>
+				<td>
+				<input type="hidden" name="tourOrder" value="${tourList.tour_id}">
+				<input type="submit" value="Order${tourList.tour_id}">
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

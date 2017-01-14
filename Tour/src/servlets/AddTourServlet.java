@@ -23,15 +23,25 @@ import tourDAO.mysql.UserDB;
 @WebServlet("/AddTourServlet")
 public class AddTourServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 3282193949240670250L;
+	private static final long serialVersionUID = 8971836896566058649L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 				
-	/*	// get request parameters for adding
-		String tour = request.getParameter("order");
+		// get request parameters for adding - tour_id and login
+		String newTour = request.getParameter("tourOrder");
+		int newTourInt = Integer.parseInt(newTour);
+		System.out.println(newTour);
+		//String user = session.getAttribute("user");
+		String user = request.getParameter("user");
+		System.out.println(user);
+		int newUserId = (new UserDB()).getIDUserByLogin(user);
+		
+		(new UserDB()).createNewOrder(newUserId, newTourInt);
+		
+	//(new TourDB()).findById(newTourInt);
 
-		CopyOnWriteArrayList<User> userList = (new UserDB()).findAll();
+		/*CopyOnWriteArrayList<User> userList = (new UserDB()).findAll();
 
 		for (int i = 0; i < userList.size(); i++) {
 			if (userList.get(i).getLogin().equals(user) && userList.get(i).getPassword().equals(pwd)) {

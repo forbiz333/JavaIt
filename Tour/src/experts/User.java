@@ -1,10 +1,8 @@
 package experts;
 
-import java.io.Serializable;
 
-public class User extends GeneralExpert implements Serializable {
+public class User extends GeneralExpert  {
 
-	private static final long serialVersionUID = 3391035766998285193L;
 
 	private int user_id;
 	private String login;

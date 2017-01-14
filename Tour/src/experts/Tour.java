@@ -1,10 +1,8 @@
 package experts;
 
-import java.io.Serializable;
 
-public class Tour extends GeneralExpert implements Serializable {
+public class Tour extends GeneralExpert {
 
-	private static final long serialVersionUID = 4250576068963153000L;
 
 	private int tour_id;
 	private int cost;
